@@ -21,7 +21,7 @@ jobs:
     - name: workload install maui
       run: dotnet workload install maui
     - name: Build
-      run: dotnet build Maui/BTWMaui.csproj -c Release -f:net6.0-windows10.0.19041.0
+      run: dotnet publish Maui/BTWMaui.csproj -c Release -f:net6.0-windows10.0.19041.0
 
    # Changes the base tag in index.html from -/- to -BTWMaui- to match the GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to BTWMaui
