@@ -20,12 +20,12 @@ jobs:
         dotnet-version: 6.0.x
 
     # workload install maui-android
-    - name: workload install maui-android
-      run: dotnet workload install maui-android
+    #- name: workload install maui-android
+    #  run: dotnet workload install maui-android
 
     # workload install Microsoft.MacCatalyst.Sdk
-    - name: workload install Microsoft.MacCatalyst.Sdk
-      run: dotnet workload install Microsoft.MacCatalyst.Sdk
+    #- name: workload install Microsoft.MacCatalyst.Sdk
+    #  run: dotnet workload install Microsoft.MacCatalyst.Sdk
 
     - name: print dir
       run: ls -a
@@ -35,7 +35,7 @@ jobs:
       run: |
         cd ./Maui
         ls -a
-        dotnet publish BTWMaui.csproj -c Release -o release -nologo
+        dotnet publish BTWMauiPages.csproj -c Release -o release -nologo
 
     # Changes the base tag in index.html from -/- to -BTWMaui- to match the GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to BTWMaui
