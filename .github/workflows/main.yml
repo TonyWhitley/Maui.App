@@ -23,6 +23,10 @@ jobs:
     - name: workload install maui-android
       run: dotnet workload install maui-android
 
+    # workload install Microsoft.MacCatalyst.Sdk
+    - name: workload install Microsoft.MacCatalyst.Sdk
+      run: dotnet workload install Microsoft.MacCatalyst.Sdk
+
     - name: print dir
       run: ls -a
       
