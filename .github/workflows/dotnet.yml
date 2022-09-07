@@ -28,8 +28,6 @@ jobs:
         dir
         cd ./Maui
         dir
-        cd ./release
-        dir
         cd ./wwwroot
         dir
 
@@ -37,23 +35,23 @@ jobs:
     - name: Change base-tag in index.html from / to BTWMaui
       run: |
         cd ./Maui
-        sed -i 's/<base href="\/" \/>/<base href="\/BTWMaui\/" \/>/g' release/wwwroot/index.html
+        sed -i 's/<base href="\/" \/>/<base href="\/Maui\/" \/>/g' wwwroot/index.html
 
     # Copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
       run: |
         cd ./Maui
-        cp release/wwwroot/index.html release/wwwroot/404.html
+        cp wwwroot/index.html wwwroot/404.html
 
     # Add the .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
     - name: Add .nojekyll file
       run: |
         cd ./Maui
-        touch release/wwwroot/.nojekyll
+        touch wwwroot/.nojekyll
 
     - name: Commit wwwroot to GitHub pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: BTWMaui/release/wwwroot
+        FOLDER: Maui/wwwroot
