@@ -25,13 +25,13 @@ jobs:
 
     - name: print dir
       run: |
-        ls -a
+        dir
         cd ./Maui
-        ls -a
+        dir
         cd ./release
-        ls -a
+        dir
         cd ./wwwroot
-        ls -a
+        dir
 
    # Changes the base tag in index.html from -/- to -BTWMaui- to match the GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to BTWMaui
