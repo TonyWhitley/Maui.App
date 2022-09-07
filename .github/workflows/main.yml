@@ -25,26 +25,26 @@ jobs:
     # Publishes the Blazor project to the release folder
     - name: Publish .NET Core Project
       run: |
-        cd ./BTWMaui
+        cd ./Maui
         ls -a
         dotnet publish BTWMaui.csproj -c Release -o release -nologo
 
     # Changes the base tag in index.html from -/- to -BTWMaui- to match the GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to BTWMaui
       run: |
-        cd ./BTWMaui
+        cd ./Maui
         sed -i 's/<base href="\/" \/>/<base href="\/BTWMaui\/" \/>/g' release/wwwroot/index.html
 
     # Copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
       run: |
-        cd ./BTWMaui
+        cd ./Maui
         cp release/wwwroot/index.html release/wwwroot/404.html
 
     # Add the .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
     - name: Add .nojekyll file
       run: |
-        cd ./BTWMaui
+        cd ./Maui
         touch release/wwwroot/.nojekyll
 
     - name: Commit wwwroot to GitHub pages
