@@ -1,0 +1,24 @@
+name: Build Maui Blazor app for Windows
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    # workload install maui
+    - name: workload install maui
+      run: dotnet workload install maui
+    - name: Build
+      run: dotnet build Maui/BTWMaui.csproj -c Release -f:net6.0-windows10.0.19041.0
