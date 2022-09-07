@@ -22,3 +22,28 @@ jobs:
       run: dotnet workload install maui
     - name: Build
       run: dotnet build Maui/BTWMaui.csproj -c Release -f:net6.0-windows10.0.19041.0
+
+   # Changes the base tag in index.html from -/- to -BTWMaui- to match the GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to BTWMaui
+      run: |
+        cd ./Maui
+        sed -i 's/<base href="\/" \/>/<base href="\/BTWMaui\/" \/>/g' release/wwwroot/index.html
+
+    # Copy index.html to 404.html to serve the same file when a file is not found
+    - name: copy index.html to 404.html
+      run: |
+        cd ./Maui
+        cp release/wwwroot/index.html release/wwwroot/404.html
+
+    # Add the .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+    - name: Add .nojekyll file
+      run: |
+        cd ./Maui
+        touch release/wwwroot/.nojekyll
+
+    - name: Commit wwwroot to GitHub pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: BTWMaui/release/wwwroot
