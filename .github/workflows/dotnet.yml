@@ -23,11 +23,21 @@ jobs:
     - name: Build
       run: dotnet publish Maui/BTWMaui.csproj -c Release -f:net6.0-windows10.0.19041.0
 
+    - name: print dir
+      run: |
+        ls -a
+        cd ./Maui
+        ls -a
+        cd ./release
+        ls -a
+        cd ./wwwroot
+        ls -a
+
    # Changes the base tag in index.html from -/- to -BTWMaui- to match the GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to BTWMaui
       run: |
         cd ./Maui
-        # Errors  sed -i 's/<base href="\/" \/>/<base href="\/BTWMaui\/" \/>/g' release/wwwroot/index.html
+        sed -i 's/<base href="\/" \/>/<base href="\/BTWMaui\/" \/>/g' release/wwwroot/index.html
 
     # Copy index.html to 404.html to serve the same file when a file is not found
     - name: copy index.html to 404.html
